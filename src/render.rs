@@ -1,3 +1,5 @@
+use s
+
 //All viewports should be square to make rendering easier
 type CharImg = Vec<Vec<char>>;
 
@@ -14,8 +16,18 @@ impl Viewport{
 
 }
 
-fn upscale_img(img: &mut VectorImage, scale_to: (u32, u32)){
-    
+enum RenderRes{
+    Ok,
+    UnsupportedAspect
+}
+
+fn upscale_img(img: &mut VectorImage, scale_to: (u32, u32)) -> RenderRes{
+    if img.aspect != aspect_of(scale_to){
+        return RenderRes::UnsupportedAspect;
+    }   
+
+    return RenderRes::Ok;
+
 }
 
 struct VectorImage{
